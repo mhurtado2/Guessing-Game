@@ -13,7 +13,15 @@
 
 //phase 4
 //End the loop early if the user guesses the correct number.
-//Display the number of the user's current guess in the prompt. For example, if the user has already guessed one time, the prommpt should say something like Your guess (2)>.
+//Display the number of the user's current guess in the prompt.
+// For example, if the user has already guessed one time, the prommpt should say something like Your guess (2)>.
+
+//phase 5
+//Use a random number to set the secret number between 1 and 100 instead of a hard-coded number.
+
+
+
+
 
 Main();
 
@@ -21,14 +29,22 @@ void Main()
 {
     Console.WriteLine("Guess The Secret Number if you DARE!");
 
-    int Guess()
+    int SecretNumber()
     {
-        int secretNum = 42;
+        int numberValue = new Random().Next(1, 100);
+        Console.WriteLine(numberValue);
+        return numberValue;
+
+    }
+
+    int Guess(int number)
+    {
+        // int secretNum = SecretNumber();
         string answer = Console.ReadLine();
         int parsedAnswer = int.Parse(answer);
 
 
-        if (secretNum == parsedAnswer)
+        if (number == parsedAnswer)
         {
             Console.WriteLine("You Are Correct!");
         }
@@ -39,27 +55,21 @@ void Main()
         return parsedAnswer;
     }
 
+    int secretNum = SecretNumber();
+
     for (int i = 1; i <= 4; i++)
     {
-        int try1 = Guess();
-        if (try1 != 42)
+        int try1 = Guess(secretNum);
+        if (try1 != secretNum)
         {
-            Console.WriteLine($"{i} guess complete");
+            Console.WriteLine($"{i} guess complete, out of 4");
         }
-        if (try1 == 42)
+        if (try1 == secretNum)
         {
             break;
         }
+
     }
 
-    // public class Guess
-    // {
-    //     public int Value { get; set; }
-    // }
-
-    // public Guess(int value)
-    // {
-    //     this.Value = value;
-    // }
 
 }
